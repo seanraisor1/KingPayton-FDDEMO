@@ -3,186 +3,298 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Coach Tu'Wan – Faith-Based Fitness That Transforms</title>
+  <title>Coach Tu’Wan – Faith-Fueled Fitness</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-start: #0B0F1C;
-      --bg-end:  #131B35;
-      --accent:  #3A86FF;
-      --text:    #FFFFFF;
-      --muted:   #C0C7D1;
-      --card-bg: rgba(255,255,255,0.04);
+      --bg: #0E1A12;
+      --card: #162B1D;
+      --accent: #4ADE80;
+      --text: #F9FAFB;
+      --muted: #9CA3AF;
     }
-    * { box-sizing:border-box; margin:0; padding:0; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family:'Inter',sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--bg-start),var(--bg-end));
-      overflow-x:hidden;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    a { text-decoration:none; color:inherit; }
-    .btn{
-      display:inline-block; padding:12px 24px; border-radius:8px;
-      font-weight:600; transition:.2s; min-width:180px; text-align:center;
+
+    a { color: inherit; text-decoration: none; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.2s;
+      text-align: center;
+      cursor: pointer;
     }
-    .btn--primary{ background:var(--accent); color:#fff; }
-    .btn--primary:hover{ background:#2d6be0; }
-    .btn--ghost{ border:1px solid var(--muted); color:var(--muted); }
-    .btn--ghost:hover{ color:#fff; border-color:#fff; }
-    .nav{
-      width:100%; max-width:1200px; margin:0 auto;
-      padding:32px 24px; display:flex; align-items:center; justify-content:space-between;
-      position:sticky; top:0; z-index:100;
-      background:linear-gradient(180deg,var(--bg-start) 60%,transparent);
+
+    .btn--primary {
+      background: var(--accent);
+      color: #000;
     }
-    .nav__links a{ margin:0 12px; font-size:15px; color:var(--muted); transition:.2s; }
-    .nav__links a:hover{ color:var(--text); }
-    .hero{ max-width:960px; margin:100px auto 80px; text-align:center; padding:0 20px; }
-    .hero h1{ font-size:56px; line-height:1.1; margin-bottom:24px; }
-    .hero p{ font-size:20px; color:var(--muted); margin-bottom:40px; }
-    .hero__buttons{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
-    .features, .pricing-grid{
-      max-width:1000px; margin:100px auto;
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:32px; padding:0 20px;
+
+    .btn--primary:hover {
+      background: #22C55E;
     }
-    .card{
-      background:var(--card-bg); backdrop-filter:blur(10px);
-      padding:32px; border-radius:12px; text-align:center;
+
+    .btn--ghost {
+      border: 1px solid var(--muted);
+      color: var(--muted);
     }
-    .card img{ width:48px; height:48px; }
-    .card h3{ margin:18px 0 12px; font-size:20px; }
-    .card p{ font-size:16px; color:var(--muted); line-height:1.5; }
-    .testimonials{ max-width:960px; margin:100px auto; padding:0 20px; text-align:center; }
-    .testimonials h2{ font-size:32px; margin-bottom:40px; }
-    .testimonial{
-      background:var(--card-bg); backdrop-filter:blur(10px);
-      border-radius:12px; padding:24px; margin-bottom:24px;
+
+    .btn--ghost:hover {
+      border-color: #fff;
+      color: #fff;
     }
-    .testimonial p{ font-size:16px; line-height:1.6; color:var(--muted); margin-bottom:12px; }
-    .testimonial strong{ color:var(--text); }
-    .pricing-section{ padding:100px 20px; text-align:center; }
-    .pricing-section h2{ font-size:36px; margin-bottom:16px; }
-    .pricing-section p{ font-size:18px; color:var(--muted); margin-bottom:48px; }
-    .price-card{
-      background:var(--card-bg); backdrop-filter:blur(10px);
-      padding:40px; border-radius:16px; text-align:center;
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .price-card h3{ font-size:28px; margin-bottom:8px; }
-    .price-card .price{ font-size:36px; margin:16px 0; font-weight:700; }
-    .price-card ul{ list-style:none; padding:0; margin:20px 0 30px;
-                    color:var(--muted); line-height:1.8; font-size:16px; }
-    .cta {
-      margin:150px 0 120px; text-align:center; padding:0 20px;
+
+    .nav__links a {
+      margin: 0 12px;
+      font-size: 15px;
+      color: var(--muted);
     }
-    .cta h2 { font-size:32px; margin-bottom:24px; }
-    footer{ padding:40px 20px; text-align:center; color:var(--muted); font-size:14px; }
-    @media(max-width:600px){
-      .hero h1{ font-size:36px; }
-      .hero p{ font-size:16px; }
-      .hero__buttons a{ margin-bottom:12px; }
-      .card{ padding:24px 16px; }
+
+    .nav__links a:hover {
+      color: var(--text);
+    }
+
+    header.hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .hero__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    section.features, section.pricing-grid {
+      max-width: 1100px;
+      margin: 100px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .card img {
+      height: 48px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .pricing-section {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .pricing-section h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .pricing-section p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .price-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 40px;
+    }
+
+    .price-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 32px;
+      margin: 16px 0;
+      font-weight: 700;
+    }
+
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    section.testimonials {
+      text-align: center;
+      padding: 100px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .testimonial {
+      background: var(--card);
+      padding: 24px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+    }
+
+    .testimonial p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .testimonial strong {
+      color: var(--text);
+    }
+
+    section.cta {
+      text-align: center;
+      margin: 100px 0 80px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .card { padding: 24px 16px; }
     }
   </style>
 </head>
 <body>
+
   <nav class="nav">
-    <div style="font-weight:700;font-size:18px">Coach Tu'Wan</div>
+    <div style="font-weight:700; font-size:18px">Coach Tu’Wan</div>
     <div class="nav__links">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-      <a href="#cta">Get Started</a>
+      <a href="#cta">Join</a>
     </div>
     <a href="https://calendly.com/demo-strategy-call" class="btn btn--primary">Book Call</a>
   </nav>
 
   <header class="hero">
-    <h1>Faith-Driven Coaching to Elevate Your Life</h1>
-    <p>Custom training, real accountability, and weekly support — built for long-term transformation in both body and mind.</p>
+    <h1>Faith-Fueled Fitness Coaching</h1>
+    <p>Workouts. Nutrition. Accountability. Spiritual Growth. All in one coaching system — 100% online.</p>
     <div class="hero__buttons">
-      <a href="https://calendly.com/demo-strategy-call" class="btn btn--primary" target="_blank" rel="noopener">Book Strategy Call</a>
-      <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--ghost" target="_blank" rel="noopener">Claim Your Spot</a>
+      <a href="https://calendly.com/demo-strategy-call" class="btn btn--primary">Book Free Call</a>
+      <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--ghost">Claim Your Spot</a>
     </div>
   </header>
 
   <section id="features" class="features">
     <div class="card">
-      <img src="https://img.icons8.com/ios-filled/50/3A86FF/workout.png" alt="">
-      <h3>Training Plans that Evolve</h3>
-      <p>Tailored workouts updated weekly, with intentional programming based on your results, energy, and lifestyle.</p>
+      <img src="https://img.icons8.com/ios-filled/50/4ADE80/gym.png" />
+      <h3>Tailored Training</h3>
+      <p>Custom workouts designed for your body, schedule, and fitness level — updated as you grow.</p>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/ios-filled/50/3A86FF/meal.png" alt="">
-      <h3>Faith & Fuel Coaching</h3>
-      <p>Faith-based guidance paired with practical meal advice — no rigid diets, just realistic strategies that work for you.</p>
+      <img src="https://img.icons8.com/ios-filled/50/4ADE80/meal.png" />
+      <h3>Faith-Based Fuel</h3>
+      <p>No crash diets. Just nutrition guidance that fits your lifestyle and supports your goals — grounded in faith.</p>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/ios-filled/50/3A86FF/chat.png" alt="">
-      <h3>Real Accountability</h3>
-      <p>Weekly 1-on-1 check-ins. Honest feedback, mindset coaching, and consistent progress tracking every step of the way.</p>
+      <img src="https://img.icons8.com/ios-filled/50/4ADE80/handshake.png" />
+      <h3>1:1 Accountability</h3>
+      <p>Weekly check-ins and spiritual encouragement — stay consistent and aligned with your bigger mission.</p>
     </div>
   </section>
 
   <section id="pricing" class="pricing-section">
-    <h2>Coaching That Fits Your Journey</h2>
-    <p>Simple, all-in-one fitness coaching — no gimmicks, no contracts.</p>
+    <h2>Start Your Journey</h2>
+    <p>No contracts. Cancel anytime. Results guaranteed if you show up and follow through.</p>
     <div class="pricing-grid">
       <div class="price-card">
-        <h3>1:1 Online Coaching</h3>
+        <h3>Online Coaching</h3>
         <p class="price">$250/month</p>
         <ul>
-          <li>✓ Weekly check-ins & video feedback</li>
-          <li>✓ Customized workouts & nutrition</li>
-          <li>✓ Faith-based support & guidance</li>
-          <li>✓ Private chat access with Tu'Wan</li>
+          <li>✓ Weekly 1:1 check-ins</li>
+          <li>✓ Personalized plans</li>
+          <li>✓ Private messaging access</li>
+          <li>✓ Ongoing adjustments</li>
+          <li>✓ Faith & fitness focus</li>
         </ul>
-        <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--primary" target="_blank" rel="noopener">Join Now</a>
+        <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--primary">Join Now</a>
       </div>
     </div>
   </section>
 
   <section id="testimonials" class="testimonials">
-    <h2>Client Success Stories</h2>
+    <h2>Client Wins</h2>
     <div class="testimonial">
-      <p>“Coach Tu'Wan helped me take control of my life. My confidence, energy, and mindset have completely changed.”</p>
-      <strong>— Darius M., Client</strong>
+      <p>"Tu’Wan’s coaching helped me grow stronger — physically and spiritually. It’s the best investment I’ve made."</p>
+      <strong>– Daniel L.</strong>
     </div>
     <div class="testimonial">
-      <p>“This was more than fitness. The spiritual direction and discipline shifted everything for me.”</p>
-      <strong>— Krista W., Client</strong>
+      <p>"I finally broke through my bad habits. Tu’Wan’s support made consistency feel natural."</p>
+      <strong>– Mya J.</strong>
     </div>
     <div class="testimonial">
-      <p>“I used to quit every plan I tried. This time, I stayed consistent — and the results show.”</p>
-      <strong>— Jared F., Client</strong>
+      <p>"This isn’t just fitness. It’s life coaching with God at the center."</p>
+      <strong>– Jerrell A.</strong>
     </div>
   </section>
 
   <section id="cta" class="cta">
-    <h2>Accepting 3 New Clients This Week</h2>
-    <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00"
-       class="btn btn--primary"
-       style="font-size:18px;padding:16px 32px"
-       target="_blank" rel="noopener">
-       Claim Your Spot →
-    </a>
-  </section>
-
-  <section id="contact" class="cta">
-    <h2>Let’s Talk</h2>
-    <p style="color:var(--muted);margin:16px auto 32px;font-size:16px;">
-      Questions? Message Coach Tu’Wan directly at <br>
-      <a href="mailto:coach.tuwan@example.com" style="color:var(--accent);text-decoration:underline;">
-        coach.tuwan@example.com
-      </a>
-    </p>
-    <a href="mailto:coach.tuwan@example.com" class="btn btn--ghost">Email Coach</a>
+    <h2>Accepting 3 New Clients This Month</h2>
+    <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--primary" style="font-size:18px;padding:16px 32px">Claim Your Spot →</a>
   </section>
 
   <footer>
-    © 2025 Coach Tu'Wan. All rights reserved.
+    © 2025 Coach Tu’Wan. All rights reserved.
   </footer>
 
   <script>
@@ -199,4 +311,6 @@
   </script>
 </body>
 </html>
+
+
 
