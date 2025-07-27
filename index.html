@@ -1,296 +1,873 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coach Tu'Wan | Faith-Driven Fitness Coaching</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>FrontendDialed – AI Funnels That Book Calls & Close Clients on Autopilot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      font-family: 'Inter', sans-serif;
-      color: #fff;
-      background-color: #0a0f1c;
-      scroll-behavior: smooth;
+    :root {
+      --bg-start: #0B0F1C;
+      --bg-end: #131B35;
+      --accent: #3A86FF;
+      --accent-hover: #2d6be0;
+      --text: #FFFFFF;
+      --muted: #C0C7D1;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.1);
+      --success: #00D4AA;
+      --warning: #FFB800;
+      --danger: #FF4757;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a { text-decoration: none; color: inherit; }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    
+    .btn--primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(58, 134, 255, 0.3);
+    }
+    
+    .btn--primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(58, 134, 255, 0.4);
+    }
+    
+    .btn--secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+    
+    .btn--secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11, 15, 28, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
+    
+    .nav__logo {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--accent);
+    }
+    
+    .nav__links {
+      display: flex;
+      gap: 32px;
+    }
+    
+    .nav__links a {
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    
+    .nav__links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero Section */
     .hero {
-      background: url('https://raw.githubusercontent.com/seanraisor1/CoachKingPayton/refs/heads/main/Tuwan%20hero.jpg') center center/cover no-repeat;
-      height: 100vh;
+      padding: 140px 0 80px;
+      text-align: center;
+    }
+    
+    .hero__urgency {
+      background: linear-gradient(90deg, var(--warning), #FF8C00);
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 24px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .hero__title {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero__subtitle {
+      font-size: 24px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero__buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    /* Trust Bar */
+    .trust-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+    
+    .trust-bar__text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--success);
+    }
+
+    /* Value Stack */
+    .value-stack {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      font-size: 48px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .section-subtitle {
+      font-size: 20px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    
+    .value-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+    }
+    
+    .value-card__icon {
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+    
+    .value-card__title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .value-card__description {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .pricing-highlight {
+      background: linear-gradient(135deg, var(--accent), #2d6be0);
+      border-radius: 20px;
+      padding: 40px;
       text-align: center;
-      padding: 0 2rem;
+      margin: 60px 0;
     }
-    .hero h1 {
-      font-size: 2.8rem;
-      line-height: 1.2;
-      max-width: 700px;
+    
+    .pricing-highlight__price {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 16px;
     }
-    .hero p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #c4c4c4;
-      max-width: 600px;
+    
+    .pricing-highlight__subtitle {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 32px;
     }
-    .cta-buttons {
-      margin-top: 2rem;
+
+    /* Why Better Section */
+    .why-better {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 60px 0;
     }
-    .cta-buttons a {
-      display: inline-block;
-      background: #3a86ff;
-      padding: 0.9rem 1.5rem;
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 8px;
-      margin: 0 0.5rem;
-      transition: background 0.3s;
+    
+    .why-better__title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      text-align: center;
     }
-    .cta-buttons a:hover {
-      background: #265ecf;
-    }
-    section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .features {
+    
+    .comparison-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
-    .feature {
-      background: #11182a;
-      border-radius: 10px;
-      padding: 2rem;
+    
+    .comparison-column h4 {
+      font-size: 20px;
+      margin-bottom: 20px;
       text-align: center;
     }
-    .feature h3 {
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
+    
+    .comparison-column--bad h4 {
+      color: var(--danger);
     }
-    .pricing-box {
-      background: #11182a;
-      padding: 2.5rem;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 400px;
-      margin: 2rem auto;
+    
+    .comparison-column--good h4 {
+      color: var(--success);
     }
-    .pricing-box h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .pricing-box ul {
+    
+    .comparison-list {
       list-style: none;
-      margin-top: 1.5rem;
-      padding: 0;
     }
-    .pricing-box ul li {
-      margin-bottom: 1rem;
+    
+    .comparison-list li {
+      padding: 8px 0;
+      font-size: 16px;
     }
-    .pricing-box a {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.9rem 2rem;
-      background: #3a86ff;
-      color: #fff;
+    
+    .comparison-list--bad li::before {
+      content: "❌ ";
+      margin-right: 8px;
+    }
+    
+    .comparison-list--good li::before {
+      content: "✅ ";
+      margin-right: 8px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+    }
+    
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+    }
+    
+    .testimonial-card__avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .testimonial-card__quote {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    .testimonial-card__author {
       font-weight: 600;
-      border-radius: 8px;
-      text-decoration: none;
+      color: var(--accent);
     }
-    footer {
-      padding: 2rem;
+    
+    .testimonial-card__role {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Founder Section */
+    .founder {
+      padding: 100px 0;
+      background: var(--card-bg);
+    }
+    
+    .founder__content {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-      font-size: 0.9rem;
-      background: #0a0f1c;
-      color: #666;
     }
+    
+    .founder__avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+    }
+    
+    .founder__story {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    
+    .founder__name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .founder__title {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* Education Section */
+    .education {
+      padding: 100px 0;
+    }
+    
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .education-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    
+    .education-card__number {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .education-card__title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .education-card__description {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--bg-start), var(--accent));
+    }
+    
+    .final-cta__urgency {
+      background: var(--warning);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 32px;
+      animation: pulse 2s infinite;
+    }
+    
+    .final-cta__title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+    
+    .final-cta__subtitle {
+      font-size: 20px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal__content {
+      background: var(--bg-start);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    
+    .modal__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    .modal__title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .modal__subtitle {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    
+    .modal__form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .modal__input {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 16px;
+    }
+    
+    .modal__input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Mobile Responsiveness */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .cta-buttons { display: flex; flex-direction: column; }
-      .cta-buttons a { margin: 0.5rem 0; }
+      .hero__title {
+        font-size: 42px;
+      }
+      
+      .hero__subtitle {
+        font-size: 18px;
+      }
+      
+      .hero__buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        padding: 14px 28px;
+        font-size: 14px;
+      }
+      
+      .section-title {
+        font-size: 36px;
+      }
+      
+      .value-grid,
+      .testimonials-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .nav__links {
+        display: none;
+      }
+      
+      .pricing-highlight__price {
+        font-size: 42px;
+      }
+      
+      .final-cta__title {
+        font-size: 36px;
+      }
     }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-
-  <!-- Sticky Navbar -->
-  <header style="position:fixed; top:0; width:100%; background:#0a0f1c; z-index:1000; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1a1a2e;">
-    <h2 style="color:#3a86ff; font-size:1.4rem;">Coach Tu'Wan</h2>
-    <nav>
-      <a href="#about" style="color:#fff; margin:0 1rem; text-decoration:none;">About</a>
-      <a href="#testimonials" style="color:#fff; margin:0 1rem; text-decoration:none;">Testimonials</a>
-      <a href="#faq" style="color:#fff; margin:0 1rem; text-decoration:none;">FAQ</a>
-      <a href="#contact" style="color:#fff; margin:0 1rem; text-decoration:none;">Contact</a>
-    </nav>
-  </header>
-  <div style="height:80px;"></div>
-
-  <!-- Preloader -->
-  <div id="preloader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#0a0f1c; display:flex; align-items:center; justify-content:center; z-index:2000;">
-    <div style="width:40px; height:40px; border:5px solid #3a86ff; border-top:5px solid transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
-  </div>
-    <!-- Hero Section -->
-  <header class="hero" id="about">
-    <div>
-      <h1>Faith-Driven Fitness Coaching with Coach Tu'Wan</h1>
-      <p>Transform your body and mindset with training rooted in discipline, faith, and consistency. For men ready to lead from the front.</p>
-      <div class="cta-buttons">
-        <a href="https://calendly.com/seanmnr20/30min" target="_blank">Book Strategy Call</a>
-        <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" target="_blank">Join Now</a>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <div class="nav__logo">FrontendDialed</div>
+        <div class="nav__links">
+          <a href="#features">Features</a>
+          <a href="#testimonials">Results</a>
+          <a href="#founder">Story</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <a href="https://calendly.com/seanmnr20/30min" class="btn btn--primary" target="_blank">Book Free Audit</a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- What You Get -->
-  <section>
-    <h2 style="text-align:center; font-size:2rem;">What You Get</h2>
-    <div class="features">
-      <div class="feature" data-aos="fade-up">
-        <h3>Customized Training</h3>
-        <p>Workouts tailored to your schedule and goals – updated weekly to keep results moving forward.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__urgency">
+        ⚠️ Only 5 Builds Accepted Per Week — This Week's Slots Are Almost Full
       </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="100">
-        <h3>Faith-Based Coaching</h3>
-        <p>Tu'Wan blends spiritual strength with fitness discipline to help you grow inside and out.</p>
-      </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="200">
-        <h3>Nutrition & Support</h3>
-        <p>Custom meal guidance + daily check-ins. Stay accountable and on track every week.</p>
+      
+      <h1 class="hero__title">
+        Land & Close Clients On Autopilot — In 7 Days or Less
+      </h1>
+      
+      <p class="hero__subtitle">
+        We build your entire client‑acquisition system — AI‑powered landing page, lead capture, intelligent chatbot closer, Calendly scheduling, and Stripe payments — 100% done‑for‑you.
+      </p>
+      
+      <div class="hero__buttons">
+        <a href="#demo" class="btn btn--primary" onclick="showModal()">📄 See Live Demo</a>
+        <a href="https://calendly.com/seanmnr20/30min" class="btn btn--secondary" target="_blank">📞 Book Free Audit Call</a>
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section>
-    <div class="pricing-box" data-aos="zoom-in">
-      <h2>1-on-1 Coaching</h2>
-      <p style="font-size:1.2rem;">$250/month</p>
-      <ul>
-        <li>✅ Weekly Check-ins</li>
-        <li>✅ Personalized Workouts</li>
-        <li>✅ Flexible Nutrition Help</li>
-      </ul>
-      <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" target="_blank">Join Coaching</a>
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-bar__text">
+        Used by coaches, creators, and real estate pros to close $5K–$20K/mo on autopilot
+      </p>
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" style="background:#0f1525; padding: 4rem 2rem;">
-    <h2 style="text-align:center; font-size:2rem; margin-bottom: 2rem;">What Real Clients Say</h2>
-    <div class="features">
-      <div class="feature" data-aos="fade-up">
-        <h3>Mike R. – Lost 30lbs</h3>
-        <p>"Tu'Wan helped me drop 30 pounds in 12 weeks. I’ve never felt more in control of my life. This wasn’t just about the body, it was about becoming a man of discipline."</p>
+  <!-- Value Stack Section -->
+  <section id="features" class="value-stack">
+    <div class="container">
+      <h2 class="section-title">Everything You Need to Close Clients While You Sleep</h2>
+      <p class="section-subtitle">
+        Stop losing leads to slow responses and manual follow-ups. Get a complete client-acquisition system that works 24/7.
+      </p>
+      
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-card__icon">🎯</div>
+          <h3 class="value-card__title">High‑Converting Landing Page</h3>
+          <p class="value-card__description">
+            Custom-designed landing page with persuasive copy written specifically for your market. Clean layout, compelling headlines, and a single clear call-to-action that converts visitors into qualified leads.
+          </p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-card__icon">🤖</div>
+          <h3 class="value-card__title">GPT-Powered AI Chatbot</h3>
+          <p class="value-card__description">
+            Intelligent chatbot trained on your services that handles objections, qualifies prospects, and guides them to book calls or make payments. It's like having a sales rep that never sleeps.
+          </p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-card__icon">💳</div>
+          <h3 class="value-card__title">Stripe Payment Integration</h3>
+          <p class="value-card__description">
+            Seamless payment processing that lets qualified prospects pay instantly. No friction, no delays — just smooth transactions that close deals on the spot.
+          </p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-card__icon">📅</div>
+          <h3 class="value-card__title">Calendly Scheduling System</h3>
+          <p class="value-card__description">
+            Automated booking system that lets prospects schedule calls directly into your calendar. No back-and-forth emails, no missed opportunities.
+          </p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-card__icon">📧</div>
+          <h3 class="value-card__title">Email & SMS Capture</h3>
+          <p class="value-card__description">
+            Advanced lead capture that builds your contact list automatically. Every visitor becomes a lead you can follow up with, even if they don't convert immediately.
+          </p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-card__icon">⚡</div>
+          <h3 class="value-card__title">7-Day Delivery Guarantee</h3>
+          <p class="value-card__description">
+            Your complete funnel goes live in under 7 days. No months of waiting, no endless revisions — just a professional system ready to start closing clients.
+          </p>
+        </div>
       </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="100">
-        <h3>James B. – Busy Father</h3>
-        <p>"I used to work 12-hour shifts and couldn’t stay consistent. With Coach Tu’Wan, I now have a system that works. Daily check-ins kept me locked in and progressing."</p>
+      
+      <div class="pricing-highlight">
+        <div class="pricing-highlight__price">$2,500</div>
+        <p class="pricing-highlight__subtitle">Pay Once. Own It Forever. Start Closing Clients This Week.</p>
+        <a href="https://buy.stripe.com/6oUcN6bKG0THfHhdyUcZa00" class="btn btn--primary" target="_blank">🚀 Claim Your Funnel Now</a>
       </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="200">
-        <h3>Derrick S. – Mental Reset</h3>
-        <p>"What stood out to me was the spiritual mindset approach. I didn’t just get stronger — I became a better leader, father, and man. This program saved my life."</p>
-      </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="300">
-        <h3>Travis K. – Entrepreneur</h3>
-        <p>"Running a business had me burnt out. Tu’Wan’s program brought back structure and confidence. My energy is up, I’m locked in, and I’m performing better in all areas."</p>
+      
+      <!-- Why Better Section -->
+      <div class="why-better">
+        <h3 class="why-better__title">Why This Beats Hiring Freelancers or Agencies</h3>
+        <div class="comparison-grid">
+          <div class="comparison-column comparison-column--bad">
+            <h4>Freelancers & Agencies</h4>
+            <ul class="comparison-list comparison-list--bad">
+              <li>Take 4-8 weeks minimum</li>
+              <li>Cost $5K-15K+ for similar work</li>
+              <li>Require constant back-and-forth</li>
+              <li>Often miss deadlines</li>
+              <li>No guarantee of results</li>
+              <li>Separate contracts for each piece</li>
+              <li>Communication nightmares</li>
+            </ul>
+          </div>
+          <div class="comparison-column comparison-column--good">
+            <h4>FrontendDialed System</h4>
+            <ul class="comparison-list comparison-list--good">
+              <li>Delivered in 7 days or less</li>
+              <li>One-time $2,500 investment</li>
+              <li>Hands-off process</li>
+              <li>Guaranteed delivery timeline</li>
+              <li>Proven conversion system</li>
+              <li>Everything integrated perfectly</li>
+              <li>Direct founder communication</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Results Counter -->
-  <section style="background:#0a0f1c;">
-    <h2 style="text-align:center; font-size:2rem;">Results That Speak</h2>
-    <div class="features">
-      <div class="feature"><h3><span id="clients">0</span>+ Men Coached</h3></div>
-      <div class="feature"><h3><span id="pounds">0</span> lbs Lost</h3></div>
-      <div class="feature"><h3><span id="mindsets">0</span> Mindsets Rebuilt</h3></div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" style="background:#0f1525;">
-    <h2 style="text-align:center; font-size:2rem;">Frequently Asked Questions</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Do I need a gym membership?</h3>
-        <p>Nope. Your plan is built around your current lifestyle. Home or gym, we make it work.</p>
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Real Results From Real Clients</h2>
+      <p class="section-subtitle">
+        See how our AI funnel system is transforming businesses across industries
+      </p>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-card__avatar">M</div>
+          <p class="testimonial-card__quote">
+            "I closed 3 new clients in the first week after my funnel went live. The AI chatbot handles all the initial qualifying so I only talk to people ready to buy. This system is a complete game-changer."
+          </p>
+          <div class="testimonial-card__author">Marcus Johnson</div>
+          <div class="testimonial-card__role">Digital Marketing Agency Owner</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card__avatar">A</div>
+          <p class="testimonial-card__quote">
+            "A complete, professional funnel live in just 5 days. Zero tech headaches, zero stress. The chatbot books calls while I sleep and the Stripe integration means clients can pay instantly. Worth every penny."
+          </p>
+          <div class="testimonial-card__author">Alicia Thompson</div>
+          <div class="testimonial-card__role">Business Consultant</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card__avatar">D</div>
+          <p class="testimonial-card__quote">
+            "FrontendDialed did everything for me — I literally just had to show up to the sales calls. The system pre-qualifies everyone so my close rate went from 30% to 75%. Incredible ROI."
+          </p>
+          <div class="testimonial-card__author">Darnell Mitchell</div>
+          <div class="testimonial-card__role">Executive Coach</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card__avatar">S</div>
+          <p class="testimonial-card__quote">
+            "My old website got maybe 1-2 leads per month. Now I'm getting 15-20 qualified prospects weekly. The AI chatbot is like having a sales team working 24/7. Best investment I've made."
+          </p>
+          <div class="testimonial-card__author">Sarah Chen</div>
+          <div class="testimonial-card__role">Real Estate Coach</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card__avatar">R</div>
+          <p class="testimonial-card__quote">
+            "I was skeptical about AI, but this chatbot converts better than most human sales reps. It handles objections perfectly and only sends me people ready to invest. My revenue doubled in 30 days."
+          </p>
+          <div class="testimonial-card__author">Robert Williams</div>
+          <div class="testimonial-card__role">Fitness Coach</div>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Can I cancel anytime?</h3>
-        <p>Yes. No contracts, no pressure. You can cancel or pause coaching any time.</p>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section id="founder" class="founder">
+    <div class="container">
+      <div class="founder__content">
+        <div class="founder__avatar">S</div>
+        <h2 class="section-title">From Broke Freelancer to Automated Success</h2>
+        
+        <div class="founder__story">
+          <p>Three years ago, I was a struggling freelancer barely making ends meet while trying to raise my son as a single dad. I was trading time for money, constantly stressed about where the next client would come from.</p>
+          
+          <p>Everything changed when I discovered how to combine AI chatbots with high-converting funnels. I built my first automated system out of desperation — I needed something that could work while I was taking care of my son.</p>
+          
+          <p>That system generated $47K in its first 90 days. Completely automated. While I was at soccer practice and helping with homework.</p>
+          
+          <p>Now I'm sharing this exact system with other entrepreneurs before I head back to school this fall. I'm only taking 5 builds per week because I want to personally ensure each one is perfect.</p>
+          
+          <p>If you're tired of the feast-or-famine cycle and want a system that works while you sleep, let's talk.</p>
+        </div>
+        
+        <div class="founder__name">Sean Raisor</div>
+        <div class="founder__title">Founder, FrontendDialed</div>
+        
+        <a href="https://calendly.com/seanmnr20/30min" class="btn btn--primary" target="_blank">Book a Call With Sean</a>
       </div>
-      <div class="feature">
-        <h3>Is this for beginners?</h3>
-        <p>Absolutely. Whether you're new or advanced, the plan is custom-built for you.</p>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="education">
+    <div class="container">
+      <h2 class="section-title">Why AI Funnels Outperform Everything Else</h2>
+      <p class="section-subtitle">
+        The science behind why our system converts 3x better than traditional landing pages
+      </p>
+      
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="education-card__number">1</div>
+          <h3 class="education-card__title">Instant Response = Higher Conversions</h3>
+          <p class="education-card__description">
+            Studies show that responding to leads within 5 minutes increases conversion rates by 900%. Our AI chatbot responds instantly, 24/7, capturing leads when they're hottest.
+          </p>
+        </div>
+        
+        <div class="education-card">
+          <div class="education-card__number">2</div>
+          <h3 class="education-card__title">Qualifying Saves 10+ Hours Per Week</h3>
+          <p class="education-card__description">
+            Instead of spending hours on unqualified prospects, the AI pre-qualifies everyone. You only talk to people who are ready and able to invest in your services.
+          </p>
+        </div>
+        
+        <div class="education-card">
+          <div class="education-card__number">3</div>
+          <h3 class="education-card__title">Friction-Free Payments Close More Deals</h3>
+          <p class="education-card__description">
+            When someone is ready to buy, they can pay instantly through Stripe. No "let me think about it" — just immediate action when motivation is highest.
+          </p>
+        </div>
       </div>
     </div>
-  </section>
-    <!-- Client Gallery -->
-  <section style="background:#0a0f1c;">
-    <h2 style="text-align:center; font-size:2rem;">Client Transformations</h2>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin-top:2rem;">
-      <img src="https://via.placeholder.com/300x400" style="width:300px; border-radius:10px;">
-      <img src="https://via.placeholder.com/300x400" style="width:300px; border-radius:10px;">
-      <img src="https://via.placeholder.com/300x400" style="width:300px; border-radius:10px;">
-    </div>
-  </section>
-
-  <!-- AI Chatbot -->
-  <section style="background:#11182a;">
-    <h2 style="text-align:center; font-size:2rem;">Ask The AI Assistant</h2>
-    <p style="text-align:center; color:#c4c4c4; margin: 0 auto; max-width: 600px;">
-      Have questions about training, nutrition, or booking? Our assistant can help — 24/7.
-    </p>
-    <div style="margin-top:2rem; display:flex; justify-content:center;">
-      <iframe src="https://frontenddialed.com/chatbot-demo" width="100%" height="500px" style="border: none; border-radius: 10px; max-width: 900px;"></iframe>
-    </div>
-  </section>
-
-  <!-- Newsletter Opt-in -->
-  <section id="contact" style="background:#11182a; padding:4rem 2rem;">
-    <h2 style="text-align:center; font-size:2rem;">Stay Connected</h2>
-    <p style="text-align:center; color:#c4c4c4;">Get exclusive fitness tips, mindset strategies, and coaching updates from Coach Tu’Wan.</p>
-    <form style="margin:2rem auto; max-width:400px; text-align:center;">
-      <input type="email" placeholder="Enter your email" required style="padding:0.8rem; width:100%; border-radius:6px; border:none; margin-bottom:1rem;">
-      <button type="submit" style="padding:0.9rem 2rem; background:#3a86ff; color:white; font-weight:600; border:none; border-radius:6px;">Subscribe</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer style="margin-top: 2rem;">
-    <p>Contact: <a href="mailto:seanmnr20@gmail.com" style="color: #3a86ff;">seanmnr20@gmail.com</a></p>
-    <p style="margin-top: 0.5rem;">&copy; 2025 Coach Tu'Wan. Funnel built by FrontendDialed.</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-    function animateValue(id, start, end, duration) {
-      let obj = document.getElementById(id);
-      let range = end - start;
-      let stepTime = Math.abs(Math.floor(duration / range));
-      let current = start;
-      let increment = end > start ? 1 : -1;
-      let timer = setInterval(() => {
-        current += increment;
-        obj.textContent = current;
-        if (current == end) clearInterval(timer);
-      }, stepTime);
-    }
-    window.addEventListener('load', () => {
-      animateValue("clients", 0, 150, 2000);
-      animateValue("pounds", 0, 1800, 2500);
-      animateValue("mindsets", 0, 300, 2200);
-      document.getElementById('preloader').style.display = 'none';
-    });
-  </script>
-
-</body>
-</html>
