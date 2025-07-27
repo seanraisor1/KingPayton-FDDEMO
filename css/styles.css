@@ -1,1 +1,35 @@
+:root {
+  --primary-950: #020617;
+  --primary-900: #0A0E1A;
+  --primary-800: #0F1629;
+  --primary-700: #141E3C;
+  --accent-400: #5B9AFF;
+  --accent-500: #3A86FF;
+  --primary-500: #2A3F7E;
 
+  --gradient-mesh: 
+    radial-gradient(at 40% 20%, rgba(58, 134, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(42, 63, 126, 0.15) 0%, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(26, 39, 84, 0.15) 0%, transparent 50%);
+}
+
+body {
+  background: var(--primary-950);
+  color: white;
+  min-height: 100vh;
+  position: relative;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--gradient-mesh);
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+}
